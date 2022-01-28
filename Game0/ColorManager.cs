@@ -7,16 +7,34 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Game0
 {
+    /// <summary>
+    /// A manager for how the objects change color on a loop
+    /// </summary>
     public class ColorManager
     {
+        /// <summary>
+        /// initializes the color manager
+        /// </summary>
+        /// <param name="color"> The initial color </param>
         public ColorManager(Color color)
         {
             Color = color;
         }
 
+        /// <summary>
+        /// The color of the color manager
+        /// </summary>
         public Color Color;
 
+        /// <summary>
+        /// The timer of when the color changes
+        /// </summary>
         private double colorTimer;
+
+        /// <summary>
+        /// Updates the color
+        /// </summary>
+        /// <param name="gameTime"> the time of the game</param>
         public void Update(GameTime gameTime)
         {
             colorTimer += gameTime.ElapsedGameTime.TotalSeconds;

@@ -10,21 +10,44 @@ namespace Game0
 {
     public class GhostSprite
     {
+        /// <summary>
+        /// The gamepads state
+        /// </summary>
         private GamePadState gamePadState;
 
+        /// <summary>
+        /// The state of the keyboard
+        /// </summary>
         private KeyboardState keyboardState;
 
+        /// <summary>
+        /// The texture of the ghost
+        /// </summary>
         private Texture2D texture;
 
+        /// <summary>
+        /// Keeps track of which way the ghost is looking
+        /// </summary>
         private bool flipped;
 
+        /// <summary>
+        /// The position of the ghost
+        /// </summary>
         private Vector2 position = new Vector2(650, 230);
 
+        /// <summary>
+        /// Loads in the ghost
+        /// </summary>
+        /// <param name="content"> the manager that loads the content </param>
         public void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("slime");
         }
 
+        /// <summary>
+        /// Updates the ghost object
+        /// </summary>
+        /// <param name="gameTime">the time of the game</param>
         public void Update(GameTime gameTime)
         {
             gamePadState = GamePad.GetState(0);
@@ -48,6 +71,12 @@ namespace Game0
             }
         }
 
+        /// <summary>
+        /// Draws the ghost sprite
+        /// </summary>
+        /// <param name="gameTime"> the time of the game</param>
+        /// <param name="spriteBatch"> the sprite batch</param>
+        /// <param name="color"> the color of the object</param>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Color color)
         {
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

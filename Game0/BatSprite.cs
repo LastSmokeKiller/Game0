@@ -93,6 +93,11 @@ namespace Game0
             }
         }
         
+        /// <summary>
+        /// Draws the bat along with the animation frame
+        /// </summary>
+        /// <param name="gameTime"> the time of the game</param>
+        /// <param name="spriteBatch"> the sprite batch </param>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             animationTimer += gameTime.ElapsedGameTime.TotalSeconds;

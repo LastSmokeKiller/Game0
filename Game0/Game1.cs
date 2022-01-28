@@ -10,9 +10,16 @@ namespace Game0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch spriteBatch;
 
+        /// <summary>
+        /// Sprites in the game
+        /// </summary>
         private GhostSprite ghost;
         private BatSprite bat;
         private SpriteFont bangers;
+
+        /// <summary>
+        /// Colors and Color managers
+        /// </summary>
         private Color color1 = Color.Yellow;
         private Color crabColor = Color.Orange;
         private Color bobColor = Color.Blue;
@@ -21,6 +28,10 @@ namespace Game0
         private ColorManager crabColorMan;
         private ColorManager bobColorMan;
         private ColorManager colorManager;
+
+        /// <summary>
+        /// Texture pack
+        /// </summary>
         private Texture2D textPack;
 
         public Game1()
@@ -47,6 +58,9 @@ namespace Game0
             base.Initialize();
         }
 
+        /// <summary>
+        /// Loads in the objects
+        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -58,6 +72,10 @@ namespace Game0
             bangers = Content.Load<SpriteFont>("bangers");
         }
 
+        /// <summary>
+        /// Updates the objects within the game
+        /// </summary>
+        /// <param name="gameTime"> the time of the game</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -84,6 +102,10 @@ namespace Game0
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draws every object within the game
+        /// </summary>
+        /// <param name="gameTime"> the time of the game </param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
