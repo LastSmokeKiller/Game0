@@ -13,7 +13,6 @@ namespace Game0
         /// <summary>
         /// Sprites in the game
         /// </summary>
-        private GhostSprite ghost;
         private BatSprite bat;
         private SpriteFont bangers;
 
@@ -32,7 +31,10 @@ namespace Game0
         /// <summary>
         /// Texture pack
         /// </summary>
-        private Texture2D textPack;
+        private Texture2D tnt;
+        private Texture2D fire;
+        private Texture2D background;
+        private Texture2D bomb;
 
         public Game1()
         {
@@ -48,7 +50,6 @@ namespace Game0
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            ghost = new GhostSprite();
             bat = new BatSprite() { Position = new Vector2(200, 200), Direction = Direction.Down };
             colorManager = new ColorManager(color1);
             bobColorMan = new ColorManager(bobColor);
@@ -66,9 +67,12 @@ namespace Game0
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            ghost.LoadContent(Content);
-            textPack = Content.Load<Texture2D>("colored_packed");
+            tnt = Content.Load<Texture2D>("TnT");
+            fire = Content.Load<Texture2D>("fire");
+            bomb = Content.Load<Texture2D>("TheBomb");
+            background = Content.Load<Texture2D>("BombBackground");
             bat.LoadContent(Content);
+
             bangers = Content.Load<SpriteFont>("bangers");
         }
 
@@ -82,7 +86,6 @@ namespace Game0
                 Exit();
 
             // TODO: Add your update logic here
-            ghost.Update(gameTime);
 
             #region The section that manages and updates the colors
 
@@ -108,29 +111,24 @@ namespace Game0
         /// <param name="gameTime"> the time of the game </param>
         protected override void Draw(GameTime gameTime)
         {
+            
             GraphicsDevice.Clear(Color.CornflowerBlue);
             bangers.MeasureString("This is a string to measure");
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-
+            spriteBatch.Draw(background, Vector2.Zero, null, Color.White);
             bat.Draw(gameTime, spriteBatch);
-
-            #region Draws the sprites from the texture pack
-
-            spriteBatch.Draw(textPack, new Vector2(50, 50), new Rectangle(320, 256, 16, 16), Color.White);
-            spriteBatch.Draw(textPack, new Vector2(500, 125), new Rectangle(530, 334, 16, 16), Color.Pink);
-            spriteBatch.Draw(textPack, new Vector2(725, 390), new Rectangle(400, 80, 16, 16), Color.Red);
-            spriteBatch.Draw(textPack, new Vector2(125, 275), new Rectangle(366, 65, 16, 16), Color.Black);
-            #endregion
-
+            spriteBatch.Draw(tnt, new Vector2(225, 190), null, Color.White);
+            spriteBatch.Draw(tnt, new Vector2(500, 190), null, Color.White);
+            spriteBatch.Draw(fire, new Vector2(245, 150), null, Color.White);
+            spriteBatch.Draw(fire, new Vector2(520, 150), null, Color.White);
+            spriteBatch.Draw(bomb, new Vector2(360, 350), null, Color.White);
             #region Draws the Strings with the banger font
-
-            spriteBatch.DrawString(bangers, "Press ESC to Exit", new Vector2(250,200), color1);
-            spriteBatch.DrawString(bangers, "This is a Crab ->", new Vector2(400, 375), crabColor);
-            spriteBatch.DrawString(bangers, "His name is Bob", new Vector2(400, 425), bobColor);
+            spriteBatch.DrawString(bangers, "Play Game", new Vector2(350, 300), Color.White, 0f, Vector2.Zero, .5f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(bangers, "Press ESC to Exit", new Vector2(25,25), color1, 0f, Vector2.Zero,.5f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(bangers, "Bomb Squad", new Vector2(275, 200), Color.White);
             #endregion
 
-            ghost.Draw(gameTime, spriteBatch, slimeC);
 
             spriteBatch.End();
             
